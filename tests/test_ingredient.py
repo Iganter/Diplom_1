@@ -1,21 +1,40 @@
 import pytest
 from praktikum.ingredient import Ingredient
 from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
+from data import IngredientData
 
 
-@pytest.mark.parametrize(
-    'ingredient_type, name, price',
-    [
-        (INGREDIENT_TYPE_SAUCE, 'hot sauce', 100),
-        (INGREDIENT_TYPE_SAUCE, 'sour cream', 200),
-        (INGREDIENT_TYPE_SAUCE, 'chili sauce', 300),
-        (INGREDIENT_TYPE_FILLING, 'cutlet', 100),
-        (INGREDIENT_TYPE_FILLING, 'dinosaur', 200),
-        (INGREDIENT_TYPE_FILLING, 'sausage', 300)
-    ]
-)
-def test_ingredient_get_type_and_name_and_price(ingredient_type, name, price):
-    ingredient = Ingredient(ingredient_type, name, price)
-    assert ingredient.get_type() == ingredient_type
-    assert ingredient.get_name() == name
-    assert ingredient.get_price() == price
+class TestIngredientSauce:
+
+    @pytest.mark.parametrize("name, price", IngredientData.SAUCE_CASES)
+    def test_get_type(self, name, price):
+        ing = Ingredient(INGREDIENT_TYPE_SAUCE, name, price)
+        assert ing.get_type() == INGREDIENT_TYPE_SAUCE
+
+    @pytest.mark.parametrize("name, price", IngredientData.SAUCE_CASES)
+    def test_get_name(self, name, price):
+        ing = Ingredient(INGREDIENT_TYPE_SAUCE, name, price)
+        assert ing.get_name() == name
+
+    @pytest.mark.parametrize("name, price", IngredientData.SAUCE_CASES)
+    def test_get_price(self, name, price):
+        ing = Ingredient(INGREDIENT_TYPE_SAUCE, name, price)
+        assert ing.get_price() == price
+
+
+class TestIngredientFilling:
+
+    @pytest.mark.parametrize("name, price", IngredientData.FILLING_CASES)
+    def test_get_type(self, name, price):
+        ing = Ingredient(INGREDIENT_TYPE_FILLING, name, price)
+        assert ing.get_type() == INGREDIENT_TYPE_FILLING
+
+    @pytest.mark.parametrize("name, price", IngredientData.FILLING_CASES)
+    def test_get_name(self, name, price):
+        ing = Ingredient(INGREDIENT_TYPE_FILLING, name, price)
+        assert ing.get_name() == name
+
+    @pytest.mark.parametrize("name, price", IngredientData.FILLING_CASES)
+    def test_get_price(self, name, price):
+        ing = Ingredient(INGREDIENT_TYPE_FILLING, name, price)
+        assert ing.get_price() == price
